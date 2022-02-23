@@ -1,0 +1,22 @@
+version: "3.3"
+services:
+  app:
+    build: .
+    volumes:
+      - .:/cars_drf_docker
+    ports:
+      - 8001:8001
+    image: app:cars_drf_docker
+    container_name: cars_drf_container
+    command: python manage.py runserver 0.0.0.0:8001
+    depends_on:
+      - db
+  db:
+     image: postgres
+     volumes:
+       - ./data/db:/var/lib/postgresql/data
+     environment:
+       - POSTGRES_DB=cars_drf_db
+       - POSTGRES_USER=admin_1
+       - POSTGRES_PASSWORD=1
+     container_name: cars_drf_cn_db
