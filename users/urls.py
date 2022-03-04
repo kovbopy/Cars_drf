@@ -6,8 +6,6 @@ router = routers.SimpleRouter()
 router.register(r'', UserViewSet)
 
 
-
 urlpatterns = [
     path('', include(router.urls)),
 ]
-

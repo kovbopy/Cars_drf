@@ -4,12 +4,12 @@ from django.contrib.auth import get_user_model
 
 
 class UserSerializer(serializers.ModelSerializer):
-    owned_cars=serializers.HyperlinkedRelatedField(many=True, read_only=True,view_name='car-detail')
+    owned_cars = serializers.HyperlinkedRelatedField(many=True, read_only=True, view_name='car-detail')
     cars_count = serializers.ReadOnlyField(source='owned_cars.count')
     email = serializers.EmailField(required=True)
     password = serializers.CharField(write_only=True, required=True, validators=[validate_password])
     password2 = serializers.CharField(write_only=True, required=True)
-    ips=serializers.SerializerMethodField("_ips",read_only=True)
+    ips = serializers.SerializerMethodField("_ips", read_only=True)
 
     all_ips = []
     unique_ips = set()
@@ -22,9 +22,8 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = get_user_model()
-        fields = ('id', 'email', 'password', 'password2', 'is_driver','cars_count',
-                  'owned_cars',"ips")
-
+        fields = ('id', 'email', 'password', 'password2', 'is_driver', 'cars_count',
+                  'owned_cars', "ips")
 
     def validate(self, attrs):
         if attrs['password'] != attrs['password2']:
@@ -45,5 +44,3 @@ class UserSerializer(serializers.ModelSerializer):
         user.set_password(password)
         user.save()
         return user
-
-

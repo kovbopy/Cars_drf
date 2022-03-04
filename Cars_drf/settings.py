@@ -44,10 +44,6 @@ INSTALLED_APPS = [
     "rest_framework_simplejwt",
     'rest_framework',
     'django.contrib.sites',
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
-    'allauth.socialaccount.providers.github',
 
     'cars',
     'users',
@@ -155,7 +151,6 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-
 
 
 CACHES = {

@@ -13,7 +13,7 @@ class CustomUserManager(BaseUserManager):
         return user
 
     def create_superuser(self, email, password=None):
-        user = self.create_user(email,password=password)
+        user = self.create_user(email, password=password)
         user.is_admin = True
         user.is_staff = True
         user.save(using=self._db)
@@ -21,9 +21,9 @@ class CustomUserManager(BaseUserManager):
 
 
 class User(AbstractBaseUser):
-    email = models.EmailField(max_length=255,unique=True)
-    is_driver=models.BooleanField(default=False)
-    ip=models.CharField(max_length=30,default='ip')
+    email = models.EmailField(max_length=255, unique=True)
+    is_driver = models.BooleanField(default=False)
+    ip = models.CharField(max_length=30, default='ip')
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
@@ -40,4 +40,3 @@ class User(AbstractBaseUser):
 
     def has_module_perms(self, app_label):
         return True
-
